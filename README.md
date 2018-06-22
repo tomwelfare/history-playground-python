@@ -5,6 +5,7 @@ Getting started
 ---------------
 1. Create an account at http://playground.enm.bris.ac.uk
 2. Download the files to your directory of choice
+3. Edit `example.py` and enter your account details
 3. Run `python example.py` to see an simple example of getting data from the playground and plotting it.
 
 
