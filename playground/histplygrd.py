@@ -25,7 +25,7 @@ class Playground():
 			print('Failed to login.')	
 
 
-	def query(self, queries, datasets, **kwargs):
+	def query(self, query_data, **kwargs):
 		'''Queries the History Playground for the given queries in each of the
 		datasets specified
 		@param self: Playground object
@@ -40,13 +40,13 @@ class Playground():
 				'Content-Type': 'application/json; charset=UTF-8'
 			}
 			payload = {
-				'corpora':datasets,
-				'terms': self.__annotate_terms(queries,datasets), 
+				'corpora': query_data[1],
+				'terms': self.__annotate_terms(query_data), 
 				'display':[kwargs.pop('display','rank')],
-				'lang':self.__expand(['english'],datasets),
-				'dateFormat':self.__expand(['YYYY'],datasets),
-				'interval':self.__expand(['1'],datasets),
-				'resolution':self.__expand(['years'],datasets),
+				'lang':self.__expand(['english'], query_data[1]),
+				'dateFormat':self.__expand(['YYYY'], query_data[1]),
+				'interval':self.__expand(['1'], query_data[1]),
+				'resolution':self.__expand(['years'], query_data[1]),
 				'minDate':kwargs.pop('minDate', ''),
 				'maxDate':kwargs.pop('maxDate', ''),
 				'smooth':kwargs.pop('smooth', False),
@@ -78,9 +78,9 @@ class Playground():
 		}
 		return switch.get(dataset, 'Invalid dataset')
 
-	def __annotate_terms(self,queries, datasets):
+	def __annotate_terms(self, query_data):
 		'''Append each corpus name to each query'''
-		return [str(q + ':' + d) for q in queries for d in datasets]
+		return [str(q + ':' + d) for q in query_data[0] for d in query_data[1]]
 	
 	def __expand(self, list, datasets):
 		'''Duplicate entries in list so that the API accepts it'''
