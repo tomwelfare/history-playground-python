@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tomwelfare/history-playground-python.svg?branch=master)](https://travis-ci.org/tomwelfare/history-playground-python)
+
 # history-playground-python
 Python interface for the History Playground
 
